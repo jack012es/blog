@@ -15,6 +15,10 @@ class PagesController extends Controller
         return view('contactos');
     }
 
+    public function mensajes(Request $request){
+        return $request->all();
+    }
+
     public function greeting($nombre = "Usuario"){
         $html = "<h5>Contenido HTML</h5>";
         $script = "<script>alert('Problema XSS')</script>";

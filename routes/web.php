@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
-Route::get('/contactame', ['as' => 'contactos', 'uses' => 'PagesController@contact']);
+Route::get('contactame', ['as' => 'contactos', 'uses' => 'PagesController@contact']);
 
-Route::get('/saludo/{nombre?}', ['as' => 'saludos', 'uses' => 'PagesController@greeting'])->where('nombre', "[A-Za-z]+");
+Route::post('contacto', 'PagesController@mensajes');
+
+Route::get('saludo/{nombre?}', ['as' => 'saludos', 'uses' => 'PagesController@greeting'])->where('nombre', "[A-Za-z]+");
