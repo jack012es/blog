@@ -18,21 +18,8 @@ use Illuminate\Support\Facades\Route;
 });
  */
 
-Route::get('/', ['as' => 'home', function(){
-    return view('home');
-}]);
+Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
-Route::get('/contactame', ['as' => 'contactos', function(){
-    return view('contactos');
-}]);
+Route::get('/contactame', ['as' => 'contactos', 'uses' => 'PagesController@contact']);
 
-Route::get('/saludo/{nombre?}', ['as' => 'saludos', function($nombre = "Usuario"){
-    //return view('saludo', ['nombre' => $nombre]);
-    //return view('saludo')->with(['nombre' => $nombre]);
-    $html = "<h5>Contenido HTML</h5>";
-    $script = "<script>alert('Problema XSS')</script>";
-
-    $consolas = ['Play Station', 'XBox One', 'Wii U'];
-
-    return view('saludo', compact('nombre', 'html', 'script', 'consolas'));
-}])->where('nombre', "[A-Za-z]+");
+Route::get('/saludo/{nombre?}', ['as' => 'saludos', 'uses' => 'PagesController@greeting'])->where('nombre', "[A-Za-z]+");
