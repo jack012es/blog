@@ -18,19 +18,21 @@ use Illuminate\Support\Facades\Route;
 });
  */
 
-Route::get('/', function(){
-    echo "<a href=".route('contactos').">Contacto</a><br>";
-    echo "<a href=".route('contactos').">Contacto</a><br>";
-    echo "<a href=".route('contactos').">Contacto</a><br>";
-    echo "<a href=".route('contactos').">Contacto</a><br>";
-    echo "<a href=".route('contactos').">Contacto</a><br>";
-    echo "<a href=".route('contactos').">Contacto</a><br>";
-});
-
-Route::get('/contactame', ['as' => 'contactos', function(){
-    return "Contacto";
+Route::get('/', ['as' => 'home', function(){
+    return view('home');
 }]);
 
-Route::get('/saludo/{nombre?}', function($nombre = "Usuario"){
-    return "Hola $nombre";
-})->where('nombre', "[A-Za-z]+");
+Route::get('/contactame', ['as' => 'contactos', function(){
+    return view('contactos');
+}]);
+
+Route::get('/saludo/{nombre?}', ['as' => 'saludos', function($nombre = "Usuario"){
+    //return view('saludo', ['nombre' => $nombre]);
+    //return view('saludo')->with(['nombre' => $nombre]);
+    $html = "<h5>Contenido HTML</h5>";
+    $script = "<script>alert('Problema XSS')</script>";
+
+    $consolas = ['Play Station', 'XBox One', 'Wii U'];
+
+    return view('saludo', compact('nombre', 'html', 'script', 'consolas'));
+}])->where('nombre', "[A-Za-z]+");
