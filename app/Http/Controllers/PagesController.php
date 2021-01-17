@@ -16,6 +16,12 @@ class PagesController extends Controller
     }
 
     public function mensajes(Request $request){
+        $this->validate($request, [
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'mensaje' => 'required|min:5'
+        ]);
+
         return $request->all();
     }
 
