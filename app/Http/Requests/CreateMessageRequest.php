@@ -13,7 +13,7 @@ class CreateMessageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class CreateMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'mensaje' => 'required|min:5'
         ];
     }
 }
